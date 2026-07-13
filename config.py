@@ -30,11 +30,11 @@ CLASS_ORDER = [
 DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]
 
 DAY_BLOCKS = [
-    {"hari": "Senin", "start_row": 6, "end_row": 16, "jam_col": 3, "start_col": 4},
-    {"hari": "Selasa", "start_row": 6, "end_row": 16, "jam_col": 25, "start_col": 26},
-    {"hari": "Rabu", "start_row": 6, "end_row": 16, "jam_col": 46, "start_col": 47},
-    {"hari": "Kamis", "start_row": 6, "end_row": 16, "jam_col": 67, "start_col": 68},
-    {"hari": "Jumat", "start_row": 6, "end_row": 16, "jam_col": 88, "start_col": 89},
+    {"hari": "Senin",  "start_row": 2,  "end_row": 14, "jam_col": 3,  "start_col": 4},
+    {"hari": "Selasa", "start_row": 2,  "end_row": 14, "jam_col": 25, "start_col": 26},
+    {"hari": "Rabu",   "start_row": 2,  "end_row": 14, "jam_col": 3,  "start_col": 46},
+    {"hari": "Kamis",  "start_row": 17, "end_row": 29, "jam_col": 3,  "start_col": 4},
+    {"hari": "Jumat",  "start_row": 17, "end_row": 29, "jam_col": 25, "start_col": 26},
 ]
 
 IGNORE_KEYWORDS = [

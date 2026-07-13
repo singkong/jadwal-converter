@@ -56,12 +56,11 @@ class SQLReader:
         rows = self.load_raw()
         result: dict[str, int] = {}
         for row in rows:
-            if len(row) < 2:
+            if not row:
                 continue
             id_val = self._to_int(row[0])
-            kode = row[1].strip()
-            if id_val is not None and kode:
-                result[kode] = id_val
+            if id_val is not None:
+                result[str(id_val)] = id_val
         logger.info("Loaded %d guru mappings", len(result))
         return result
 
@@ -82,10 +81,10 @@ class SQLReader:
         rows = self.load_raw()
         result: dict[str, int] = {}
         for row in rows:
-            if len(row) < 2:
+            if len(row) < 3:
                 continue
             id_val = self._to_int(row[0])
-            nama = row[1].strip()
+            nama = row[2].strip()
             if id_val is not None and nama:
                 result[nama] = id_val
         logger.info("Loaded %d kelas mappings", len(result))
