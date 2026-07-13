@@ -1,0 +1,5 @@
+openpyxl>=3.1.2
+pandas>=2.1.0
+sqlparse>=0.4.4
+customtkinter>=5.2.2
+tqdm>=4.66.0
