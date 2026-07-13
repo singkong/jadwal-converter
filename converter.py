@@ -29,12 +29,41 @@ class Converter:
         finally:
             reader.close()
 
+        before = len(self.items)
+        self.items = self._merge_consecutive(self.items)
+        merged = before - len(self.items)
+
         logger.info(
-            "Conversion complete: %d items, %d errors",
-            len(self.items),
-            len(self.errors),
+            "Conversion complete: %d items (%d merged), %d errors",
+            len(self.items), merged, len(self.errors),
         )
         return self.items, self.errors
+
+    @staticmethod
+    def _merge_consecutive(items: list[JadwalItem]) -> list[JadwalItem]:
+        if not items:
+            return []
+
+        sorted_items = sorted(items, key=lambda x: (x.hari, x.kelas_id, x.jam_mulai))
+
+        merged: list[JadwalItem] = []
+        prev = sorted_items[0]
+
+        for cur in sorted_items[1:]:
+            same_group = (
+                cur.hari == prev.hari
+                and cur.kelas_id == prev.kelas_id
+                and cur.guru_id == prev.guru_id
+                and cur.mapel_id == prev.mapel_id
+            )
+            if same_group and cur.jam_mulai == prev.jam_selesai:
+                prev.jam_selesai = cur.jam_selesai
+            else:
+                merged.append(prev)
+                prev = cur
+
+        merged.append(prev)
+        return merged
 
     def _process_block(
         self, reader: ExcelReader, block: dict[str, Any], now_str: str
